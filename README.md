@@ -26,7 +26,7 @@ Waconn is a simple WhatsApp automation project built to send text messages and i
 ### **Installation**
 1. Clone this repository:
    ```bash
-   git clone https://github.com/username/waconn.git
+   git clone https://github.com/cakracomp/waconn.git
 2. Navigate to the project folder:
    ```bash
    cd waconn
