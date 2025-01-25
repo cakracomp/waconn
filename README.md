@@ -33,6 +33,12 @@ Waconn is a simple WhatsApp automation project built to send text messages and i
 3. Install the dependencies:
    ```bash
    npm install
+4. Create the required database tables:
+   * Import the database/schema.sql file into your MySQL database:
+   ```bash
+   mysql -u username -p database_name < database/schema.sql
+   ```
+   * This will create the sess_wa and crm_h2 tables.
 5. Run the application:
     ```bash
     npm start
@@ -40,10 +46,26 @@ Waconn is a simple WhatsApp automation project built to send text messages and i
 ---
 
 ### **Usage**
-* WhatsApp Web will automatically open in the browser.
-* Scan the QR Code to log in (if the session isn’t saved yet).
-* Enjoy the bot’s features!
+1. Login to WhatsApp Web
+   * If you set headless: false, WhatsApp Web will automatically open in the browser, and you can scan the QR Code directly.
+   * If you are running the app in headless: true, the QR Code will be saved in the sess_wa table as text. You can use this text in your own application to display the QR Code as an \<img> tag.
+   * After the QR Code is scanned and the session is successfully connected, the sess_wa table will be updated by filling in the phone number of the connected account in the number column. This indicates in the database that the session is active and ready to send messages or images.
+2. Input Phone Numbers and Messages
+   * Add the phone number and message text in the crm_h2 table using your preferred database management tool.
+   * Example data in crm_h2:
   
+| idcrm | nama       | hp           | isi          | resp    |
+|-------|------------|--------------|--------------|---------|
+| 1     | John Doe   | 628123456789 | Hello there! | pending |
+
+3. Message Sending
+   * Waconn will check the crm_h2 table every 30 seconds.
+   * Messages with the resp column set to pending will be sent via WhatsApp.
+   * Once the message is sent successfully:
+        * The resp column will be updated to sent.
+        * The sentdate column will be filled with the current timestamp.
+
+
 ---
 
 ### **Contributions**
