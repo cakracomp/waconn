@@ -2,10 +2,10 @@ const mariadb = require('mariadb');
 
 // Konfigurasi koneksi database
 const pool = mariadb.createPool({
-    host: '149.129.242.215',
-    user: 'hondacsa_cakra',
-    password: 'Ahmids123456',
-    database: 'hondacsa_yos',
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'yourdb',
     connectionLimit: 5,
 });
 
